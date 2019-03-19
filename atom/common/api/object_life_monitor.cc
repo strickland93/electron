@@ -7,6 +7,7 @@
 
 #include "base/bind.h"
 #include "base/message_loop/message_loop.h"
+#include "third_party/blink/public/platform/task_type.h"
 
 namespace atom {
 
@@ -28,6 +29,7 @@ void ObjectLifeMonitor::OnObjectGC(
     const v8::WeakCallbackInfo<ObjectLifeMonitor>& data) {
   ObjectLifeMonitor* self = data.GetParameter();
   self->target_.Reset();
+
   self->RunDestructor();
   data.SetSecondPassCallback(Free);
 }

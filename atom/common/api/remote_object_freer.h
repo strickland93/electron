@@ -5,6 +5,7 @@
 #ifndef ATOM_COMMON_API_REMOTE_OBJECT_FREER_H_
 #define ATOM_COMMON_API_REMOTE_OBJECT_FREER_H_
 
+#include <map>
 #include <string>
 
 #include "atom/common/api/object_life_monitor.h"
@@ -17,6 +18,7 @@ class RemoteObjectFreer : public ObjectLifeMonitor {
                      v8::Local<v8::Object> target,
                      const std::string& context_id,
                      int object_id);
+  static void AddRef(const std::string& context_id, int object_id);
 
  protected:
   RemoteObjectFreer(v8::Isolate* isolate,
@@ -26,6 +28,8 @@ class RemoteObjectFreer : public ObjectLifeMonitor {
   ~RemoteObjectFreer() override;
 
   void RunDestructor() override;
+
+  static std::map<std::string, std::map<int, int>> ref_mapper_;
 
  private:
   std::string context_id_;
