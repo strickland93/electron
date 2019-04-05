@@ -561,7 +561,6 @@ static_library("electron_lib") {
 
   if (enable_pdf_viewer) {
     deps += [
-      "//components/guest_view/browser",
       "//components/guest_view/common",
       "//components/pdf/browser",
       "//content/public/common:service_names",
