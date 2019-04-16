@@ -42,7 +42,7 @@ void RemoteObjectFreer::AddRef(const std::string& context_id, int object_id) {
 }
 
 // static
-std::map<std::string, std::map<int, int>> ref_mapper_;
+std::map<std::string, std::map<int, int>> RemoteObjectFreer::ref_mapper_;
 
 RemoteObjectFreer::RemoteObjectFreer(v8::Isolate* isolate,
                                      v8::Local<v8::Object> target,
