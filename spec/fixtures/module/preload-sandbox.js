@@ -19,4 +19,8 @@
       ipcRenderer.send('child-loaded', window.opener == null, document.body.innerHTML, location.href)
     }, false)
   }
+
+  process.once('loaded', () => {
+    ipcRenderer.send('process-loaded')
+  })
 })()
